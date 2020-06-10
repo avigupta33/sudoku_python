@@ -4,7 +4,7 @@ class Cage:
         self.top_left = top_left
         self.cage_size = cage_size
 
-    def display(self):
+    def display(self) -> None:
         print(self.top_left)
         for row in self.data:
             for val in row:
@@ -12,7 +12,7 @@ class Cage:
             print()
         print()
 
-    def verify(self):
+    def verify(self) -> bool:
         seen = set()
         for row in self.data:
             for val in row:
@@ -20,4 +20,19 @@ class Cage:
                     seen.add(val)
                 else:
                     return False
+        return True
+
+    def verifyValue(self, row_i: int, col_i: int, value: int):
+        temp = self.data[row_i][col_i]
+        self.data[row_i][col_i] = value
+        verify = self.verify()
+        self.data[row_i][col_i] = temp
+        return verify
+
+    def isInCage(self, row_i, col_i) -> bool:
+        if self.top_left[0]<=row_i<self.top_left[0]+self.cage_size:
+            if self.top_left[1]<=col_i<self.top_left[1]+self.cage_size:
+                return True
+        return False
+
 

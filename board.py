@@ -49,8 +49,30 @@ class Board:
         return True
 
     def isValid(self, row_i: int, col_i: int, value: int) -> bool:
+        if row_i < 0 or col_i <0 or row_i >= self.size or col_i >= self.size:
+            return False
+
         if value in self.data[row_i]:
             return False
+
+        for i in range(0, self.size):
+            if self.data[i][col_i] == value:
+                return False
+
+        curr_cage = None
+        for cage in self.cages:
+            if cage.isInCage(row_i, col_i):
+                curr_cage = cage
+                break
+
+        if curr_cage is None:
+            print("Error in isValid -- curr_cage")
+            return False
+
+        if not curr_cage.verifyValue(row_i, col_i, value):
+            return False
+
+        return True
 
 
 
