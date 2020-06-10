@@ -10,6 +10,5 @@ if __name__ == "__main__":
     board = parser.parse("puzzles/s01a.txt")
     print(board.verify())
     for cage in board.cages:
-        print(cage.data)
         cage.display()
     #board.display()

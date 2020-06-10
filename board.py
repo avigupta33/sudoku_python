@@ -11,11 +11,13 @@ class Board:
     def splitIntoCages(self) -> List[List[int]]:
         cages = []
         cage_size = int(self.size**0.5)
-        for x in range(0, cage_size):
-            for y in range(0, cage_size):
-                cage = Cage(self.data[x:x+cage_size][y:y+cage_size])
-                cages.append(cage)
-
+        for i in range(0, cage_size):
+            for j in range(0, cage_size):
+                cage = []
+                rows = self.data[i*cage_size:(i+1)*cage_size]
+                for row in rows:
+                    cage.append(row[j*cage_size:(j+1)*cage_size])
+                cages.append(Cage(cage))
         return cages
 
     def display(self) -> None:

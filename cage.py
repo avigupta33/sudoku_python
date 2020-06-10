@@ -7,6 +7,7 @@ class Cage:
             for val in row:
                 print(val, end = " ")
             print()
+        print()
 
     def verify(self):
         seen = set()
