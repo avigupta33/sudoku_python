@@ -13,6 +13,8 @@ class DFS_Solver(Solver):
         pass
 
     def solve(self, board: Board):
-        starting_pt = (0,0)
+        row = 0
+        col = 0
+
         pass
 

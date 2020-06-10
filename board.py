@@ -17,7 +17,8 @@ class Board:
                 rows = self.data[i*cage_size:(i+1)*cage_size]
                 for row in rows:
                     cage.append(row[j*cage_size:(j+1)*cage_size])
-                cages.append(Cage(cage))
+                cages.append(Cage(cage, (i*cage_size,j*cage_size), cage_size))
+
         return cages
 
     def display(self) -> None:
@@ -46,6 +47,12 @@ class Board:
                 return False
 
         return True
+
+    def isValid(self, row_i: int, col_i: int, value: int) -> bool:
+        if value in self.data[row_i]:
+            return False
+
+
 
 
 

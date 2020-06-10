@@ -1,8 +1,11 @@
 class Cage:
-    def __init__(self, data):
+    def __init__(self, data, top_left, cage_size):
         self.data = data
+        self.top_left = top_left
+        self.cage_size = cage_size
 
     def display(self):
+        print(self.top_left)
         for row in self.data:
             for val in row:
                 print(val, end = " ")

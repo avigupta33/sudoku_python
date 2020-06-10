@@ -11,4 +11,5 @@ if __name__ == "__main__":
     print(board.verify())
     for cage in board.cages:
         cage.display()
+
     #board.display()
