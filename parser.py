@@ -5,7 +5,7 @@ class Parser:
     def __init__(self):
         pass
 
-    def parse(self, filename: str):
+    def parse(self, filename: str) -> Board:
         with open(filename) as fil:
             data = []
             line = fil.readline()

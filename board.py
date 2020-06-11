@@ -50,7 +50,7 @@ class Board:
         for i in range(self.size):
             row = self.data[i]
             if len(set(row)) != len(row):
-                print(f"Verify failed on row {i}")
+                # print(f"Verify failed on row {i}")
                 return False
 
         for col_ind in range(self.size):
@@ -59,13 +59,13 @@ class Board:
                 col.append(self.data[row_ind][col_ind])
 
             if len(set(col)) != len(col):
-                print(f"Verify failed on col {i}")
+                # print(f"Verify failed on col {i}")
                 return False
 
         for i in range(len(self.cages)):
             cage = self.cages[i]
             if not cage.verify():
-                print(f"Verify failed on cage {i} with top left {cage.top_left}")
+                # print(f"Verify failed on cage {i} with top left {cage.top_left}")
                 return False
 
         return True
