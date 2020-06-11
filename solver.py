@@ -26,7 +26,7 @@ class DFS_Solver(Solver):
             return True
         if board.verify():
             return True
-        for num in range(1, 10):
+        for num in range(1, board.size + 1):
             if board.isValid(unassigned[0], unassigned[1], num):
                 board.setData(unassigned[0],unassigned[1], num)
                 if self.solve(board):
