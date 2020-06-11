@@ -32,7 +32,6 @@ class Board:
                 return cage
 
         print("Error in findCage")
-        return None
 
     def display(self) -> None:
         for i in range(0, self.size):
