@@ -2,11 +2,16 @@ from typing import List
 from cage import Cage
 
 class Board:
-    def __init__(self, data, size):
+    def __init__(self, data: List[List[int]], size: int):
         self.data = data
         self.size = size
         self.cage_size = int(size**0.5)
         self.cages = self.splitIntoCages()
+
+    def setData(self, row_i: int, col_i: int, value: int) -> None:
+        self.data[row_i][col_i] = value
+        cage = self.findCage(row_i, col_i)
+        cage.setFromAbsolute(row_i, col_i, value)
 
     def splitIntoCages(self) -> List[List[int]]:
         cages = []
@@ -21,6 +26,14 @@ class Board:
 
         return cages
 
+    def findCage(self, row_i: int, col_i: int) -> Cage:
+        for cage in self.cages:
+            if cage.isInCage(row_i, col_i):
+                return cage
+
+        print("Error in findCage")
+        return None
+
     def display(self) -> None:
         for i in range(0, self.size):
             if i % self.cage_size == 0:
@@ -34,42 +47,49 @@ class Board:
         print("-" * 25)
 
     def verify(self) -> bool:
-        for row in self.data:
+        for i in range(self.size):
+            row = self.data[i]
             if len(set(row)) != len(row):
+                print(f"Verify failed on row {i}")
                 return False
 
         for col_ind in range(self.size):
-            if len(set(self.data[:][col_ind])) != len(self.data[:][col_ind]):
+            col = []
+            for row_ind in range(self.size):
+                col.append(self.data[row_ind][col_ind])
+
+            if len(set(col)) != len(col):
+                print(f"Verify failed on col {i}")
                 return False
 
-        for cage in self.cages:
+        for i in range(len(self.cages)):
+            cage = self.cages[i]
             if not cage.verify():
+                print(f"Verify failed on cage {i} with top left {cage.top_left}")
                 return False
 
         return True
 
     def isValid(self, row_i: int, col_i: int, value: int) -> bool:
         if row_i < 0 or col_i <0 or row_i >= self.size or col_i >= self.size:
+            # print(f"isValid for {value} @ ({row_i}, {col_i}) failed boundary")
             return False
 
         if value in self.data[row_i]:
+            # print(f"isValid for {value} @ ({row_i}, {col_i}) failed row")
+
             return False
 
         for i in range(0, self.size):
             if self.data[i][col_i] == value:
+                # print(f"isValid for {value} @ ({row_i}, {col_i}) failed col")
+
                 return False
 
-        curr_cage = None
-        for cage in self.cages:
-            if cage.isInCage(row_i, col_i):
-                curr_cage = cage
-                break
+        curr_cage = self.findCage(row_i, col_i)
 
-        if curr_cage is None:
-            print("Error in isValid -- curr_cage")
-            return False
-
-        if not curr_cage.verifyValue(row_i, col_i, value):
+        if not curr_cage.verifyValue(value):
+            # print(f"isValid for {value} @ ({row_i}, {col_i}) failed cage")
             return False
 
         return True
