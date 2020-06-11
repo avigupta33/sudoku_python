@@ -1,5 +1,7 @@
+import typing
+from typing import List, Tuple
 class Cage:
-    def __init__(self, data, top_left, cage_size) -> None:
+    def __init__(self, data: List[List[int]], top_left: Tuple[int, int], cage_size: int) -> None:
         self.data = data
         self.top_left = top_left
         self.cage_size = cage_size
