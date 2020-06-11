@@ -1,4 +1,3 @@
-from board import Board
 from parser import Parser
 from solver import DFS_Solver
 

@@ -1,5 +1,5 @@
 class Cage:
-    def __init__(self, data, top_left, cage_size):
+    def __init__(self, data, top_left, cage_size) -> None:
         self.data = data
         self.top_left = top_left
         self.cage_size = cage_size

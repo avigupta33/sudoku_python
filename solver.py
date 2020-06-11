@@ -1,4 +1,3 @@
-import typing
 from typing import Tuple
 
 from board import Board
@@ -11,7 +10,7 @@ class Solver:
         pass
 
 class DFS_Solver(Solver):
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     @staticmethod
